@@ -7,8 +7,10 @@ from utils.queries import insert_hotel, insert_reservation, insert_client, inser
 
 st.title("Ajouter un Hôtel")
 with st.form("add_hotel_form"):
+    id = st.number_input("ID Hôtel", min_value=1, step=1)
     ville = st.text_input("Ville", max_chars=50)
     pays = st.text_input("Pays", max_chars=50)
+
     code_postal = st.number_input("Code Postal", min_value=0, step=1)
 
     submitted = st.form_submit_button("Ajouter")
@@ -16,7 +18,7 @@ with st.form("add_hotel_form"):
     if submitted:
         if ville and pays and code_postal:
             try:
-                insert_hotel(ville, pays, code_postal)
+                insert_hotel(id, ville, pays, code_postal)
                 st.success(f"L'hôtel situé à {ville}, {pays} a été ajouté avec succès.")
             except Exception as e:
                 st.error(f"Une erreur s'est produite lors de l'ajout de l'hôtel : {e}")

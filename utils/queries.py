@@ -11,10 +11,10 @@ def get_hotels():
     connection.close()
     return hotels
 
-def insert_hotel(ville, pays, code_postal):
+def insert_hotel(id, ville, pays, code_postal):
     connection = get_connection()
     c = connection.cursor()
-    c.execute("INSERT INTO Hotel (ville, pays, code_postal) VALUES (?, ?, ?)", (ville, pays, code_postal))
+    c.execute("INSERT INTO Hotel (id, ville, pays, code_postal) VALUES (?, ?, ?, ?)", (id, ville, pays, code_postal))
     connection.commit()
     connection.close()
 
