@@ -8,11 +8,14 @@ from utils.queries import get_reservations
 
 st.title("Liste des Réservations")
 
-reservations = get_reservations()
-if reservations:
-    st.write("Voici la liste des réservations :")
-    
-    df = pd.DataFrame(reservations, columns=["ID", "Client", "Date de début", "Date de fin"])
-    st.dataframe(df)
-else:
-    st.write("Aucune réservation trouvée.")
+try:
+    reservations = get_reservations()
+    if reservations:
+        st.write("Voici la liste des réservations :")
+        
+        df = pd.DataFrame(reservations, columns=["ID", "Client", "Date de début", "Date de fin", "Numéro de chambre"])
+        st.dataframe(df)
+    else:
+        st.write("Aucune réservation trouvée.")
+except Exception as e:
+    st.error(f"Une erreur s'est produite lors de la récupération des réservations : {e}")
