@@ -10,8 +10,13 @@ def init_db():
             schema = f.read()
             c.executescript(schema)
 
+        with open("db/data.sql", "r", encoding="utf-8") as f:
+            data = f.read()
+            c.executescript(data)
+
         connection.commit()
         connection.close()
+        
         print("Base de données initialisée.")
     else:
         print("Base de données déjà existante.")
