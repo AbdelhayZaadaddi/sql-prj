@@ -1,5 +1,7 @@
-# app.py
 import streamlit as st
+from database import init_db
 
-st.title("Hello Streamlit!")
-st.write("This is your first app.")
+st.set_page_config(page_title="Hestion Hotel", layoute="wide")
+init_db()
+st.title("Welcome to Hestion Hotel")
+st.write("Bienvenue a Hestion Hotel")

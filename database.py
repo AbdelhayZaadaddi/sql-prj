@@ -1,15 +1,17 @@
 import sqlite3
+import os
 
 def init_db():
-    connection = sqlite3.connect("hotel.db")
-    c = connection.cursor()
+    if not os.path.exists("hotel.db"):
+        connection = sqlite3.connect("hotel.db")
+        c = connection.cursor()
 
-    with open("db/shema.sql") as sql_f:
-        sql_sqript = sql_f.read()
+        with open("db/schema.sql", "r", encoding="utf-8") as f:
+            schema = f.read()
+            c.executescript(schema)
 
-    
-    c.executescript(sql_sqript)
-
-    connection.commit()
-    connection.close()
-    print("Database initialized successfully.")
+        connection.commit()
+        connection.close()
+        print("Base de données initialisée.")
+    else:
+        print("Base de données déjà existante.")
